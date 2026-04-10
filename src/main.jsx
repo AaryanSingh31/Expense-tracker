@@ -8,14 +8,16 @@ import Dashboard from './components/Dashboard/Dashboard.jsx'
 import Transactions from './components/Transactions/Transactions.jsx'
 import Budgets from './components/Budgets/Budgets.jsx'
 import Profile from './components/Profile/Profile.jsx'
+import AddExpense from './components/AddExpense/AddExpense.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
-      <Route path='dashboard' element={<Dashboard />} />
+      <Route path='' element={<Dashboard />} />
       <Route path='transactions' element={<Transactions />} />
       <Route path='budgets' element={<Budgets />} />
       <Route path='profile' element={<Profile />} />
+      <Route path='add-expense' element={<AddExpense />} />
       {/* <Route 
       loader={githubInfoLoader}
       path='github' 
