@@ -9,13 +9,13 @@ import add from "../../assets/add.png";
 function NavBar() {
   return (
     <>
-      <div className="hidden md:block w-100 h-full border-r-2 border-[#545450] bg-[#262624]">
+      <div className="hidden md:flex md:flex-col md:w-72 h-screen border-r border-[#545450] bg-[#262624] shrink-0">
         <div className="w-full mt-4.5 text-white flex justify-center text-2xl font-semibold">
           Spend
           <span className=" text-[#4f47a6] text-2xl font-semibold">Wise</span>
         </div>
 
-        <div className="flex flex-col items-center mt-3">
+        <div className="flex flex-col px-4 mt-6 gap-2">
           <NavLink
             to="/"
             className={({ isActive }) =>

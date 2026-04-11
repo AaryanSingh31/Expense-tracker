@@ -4,7 +4,18 @@ import {useState} from 'react'
 function Dashboard({totalSpent, budgetLeft, transactions}) {
   
   return (
-    <div className=' w-full h-full rounded-r-2xl bg-[#30302e]'>Dashboard</div>
+    <div className='w-full h-full bg-[#30302e]'>
+      <div className="mb-6 pb-2 bg-gray-800 flex justify-around">
+        <div className="wrapper">
+          <h3 className="text-white text-lg font-light ">Good Morning, Aaryan & Sambhav</h3>
+        <p className="text-gray-400 text-sm ">Here's your spending overview for today.</p>
+        </div>
+        <div className="text-white flex justify-center items-center text-2xl font-semibold">
+          Spend
+          <span className=" text-[#4f47a6] text-2xl font-semibold">Wise</span>
+        </div>
+      </div>
+    </div>
   )
 }
 

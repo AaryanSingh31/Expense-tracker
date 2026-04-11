@@ -3,16 +3,15 @@ import NavBar from './components/NavBar/NavBar.jsx'
 import { Outlet } from 'react-router-dom'
 
 function Layout() {
-    return (
-        <>
-            <div className="min-h-screen flex items-center justify-center bg-[#1c1c1b]">
-                <div className=" overflow-hidden flex w-335 h-162 border-2 border-[#545450] rounded-2xl">
-                    <NavBar />
-                    <Outlet />
-                </div>
-            </div>
-        </>
-    )
+  return (
+    <div className="min-h-screen flex bg-[#1c1c1b]">
+      <NavBar />
+      
+      <main className="flex-1 h-screen overflow-y-auto">
+        <Outlet />
+      </main>
+    </div>
+  );
 }
 
-export default Layout
+export default Layout;
