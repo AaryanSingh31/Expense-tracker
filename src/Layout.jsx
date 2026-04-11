@@ -7,7 +7,7 @@ function Layout() {
     <div className="min-h-screen flex bg-[#1c1c1b]">
       <NavBar />
       
-      <main className="flex-1 h-screen overflow-y-auto">
+      <main className="flex-1 h-screen overflow-y-hidden">
         <Outlet />
       </main>
     </div>
