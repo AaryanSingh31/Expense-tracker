@@ -1,8 +1,10 @@
 import React from 'react'
 
-function Transactions() {
+function Transactions({expenses}) {
   return (
-    <div className='w-full h-full rounded-r-2xl bg-[#30302e]'>Transaction</div>
+    <div className='w-full h-full rounded-r-2xl bg-[#30302e]'>
+      
+    </div>
   )
 }
 

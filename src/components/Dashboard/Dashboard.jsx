@@ -1,5 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
+import SummaryCards from './SummaryCards'
+import RecentTransactions from '../Transactions/RecentTransactions'
 
 function Dashboard({totalSpent, budgetLeft, transactions}) {
   
@@ -15,6 +17,8 @@ function Dashboard({totalSpent, budgetLeft, transactions}) {
           <span className=" text-[#4f47a6] text-2xl font-semibold">Wise</span>
         </div>
       </div>
+      <SummaryCards totalBudget="12500" totalExpenses="8400" transactions="10" />
+      <RecentTransactions />
     </div>
   )
 }
