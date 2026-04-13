@@ -1,6 +1,14 @@
 import React from 'react'
+import { useExpense } from "../../context/ExpenseContext";
 
 function SummaryCards({totalBudget, totalExpenses, transactions}) {
+
+  const { expenses } = useExpense();
+
+  expenses.forEach((exp) => {
+  console.log(exp.title);
+});
+
   return (
     <div className="container flex justify-center items-center gap-4 p-5">
       <div className="totalBudget w-1/3 h-12 py-7 bg-green-300 rounded-lg flex flex-col items-center justify-center transition-all duration-300 hover:shadow-[0_0_20px_rgba(134,239,172,0.8)]">
