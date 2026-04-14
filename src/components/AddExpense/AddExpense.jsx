@@ -104,7 +104,7 @@ function AddExpense() {
 
             {/* Category section */}
 
-            <div className="flex gap-4 mt-2 justify-around flex-wrap">
+            <div className="flex gap-4 mt-2 h-37 justify-around flex-wrap overflow-y-scroll no-scrollbar">
               <button
                 onClick={() => setCategory("food")}
                 className={`text-center px-1 overflow-hidden no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
@@ -176,7 +176,7 @@ function AddExpense() {
           <section className="payment px-6 mt-1.5">
             <div className="flex gap-6 w-full">
               <div className="flex w-full flex-col">
-                <label className='text-[#aaaaa7] font-semibold'>Payment Method</label>
+                <label className='text-[#aaaaa7] font-semibold whitespace-nowrap'>Payment Method</label>
                 <select
                   className='bg-[#30302e] border-[1.5px] mt-1 h-9 w-full min-w-0 border-[#494945] rounded-lg px-2 focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-white placeholder-[#686867]'
                   value={payment}
