@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
+import dummyExpenses from "../dummy/dummyExp";
 
 const ExpenseContext = createContext();
 
 export const ExpenseProvider = ({ children }) => {
   const [expenses, setExpenses] = useState(() => {
   const saved = localStorage.getItem("expenses");
-  return saved ? JSON.parse(saved) : [];
+  return saved ? JSON.parse(saved) : dummyExpenses;
 });
 
 useEffect(() => {

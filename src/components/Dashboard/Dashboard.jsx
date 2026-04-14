@@ -2,11 +2,13 @@ import React from 'react'
 import {useState} from 'react'
 import SummaryCards from './SummaryCards'
 import RecentTransactions from '../Transactions/RecentTransactions'
+import ExpenseLineChart from '../Charts/ExpenseLineChart'
+import ExpenseBarChart from '../Charts/ExpenseBarChart'
 
 function Dashboard({totalSpent, budgetLeft, transactions}) {
   
   return (
-    <div className='w-full h-full bg-[#30302e]'>
+    <div className='w-full bg-[#30302e] h-screen overflow-y-auto pb-6'>
       <div className="mb-6 pb-2 bg-gray-800 flex justify-around">
         <div className="wrapper">
           <h3 className="text-white text-lg font-light ">Good Morning, Aaryan & Sambhav</h3>
@@ -18,6 +20,8 @@ function Dashboard({totalSpent, budgetLeft, transactions}) {
         </div>
       </div>
       <SummaryCards totalBudget="12500" totalExpenses="8400" transactions="10" />
+      <ExpenseBarChart />
+      <ExpenseLineChart />
       <RecentTransactions />
     </div>
   )
