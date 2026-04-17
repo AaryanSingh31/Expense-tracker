@@ -10,6 +10,7 @@ import Budgets from './components/Budgets/Budgets.jsx'
 import Profile from './components/Profile/Profile.jsx'
 import AddExpense from './components/AddExpense/AddExpense.jsx'
 import { ExpenseProvider } from "./context/ExpenseContext";
+import { BudgetProvider } from "./context/BudgetContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,7 +32,9 @@ const router = createBrowserRouter(
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ExpenseProvider>
-      <RouterProvider router={router} />
+      <BudgetProvider>
+        <RouterProvider router={router} />
+      </BudgetProvider>
     </ExpenseProvider>
   </StrictMode>,
 )

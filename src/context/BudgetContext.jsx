@@ -1,17 +1,16 @@
 import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
-import dummyBudget from "../dummy/dummyBud";
 
 const BudgetContext = createContext();
 
 export const BudgetProvider = ({ children }) => {
   const [budget, setBudget] = useState(() => {
   const saved = localStorage.getItem("budget");
-  return saved ? JSON.parse(saved) : dummyBudget
+  return saved ? JSON.parse(saved) : 0
 });
 
 useEffect(() => {
-  localStorage.setItem("expenses", JSON.stringify(budget));
+  localStorage.setItem("budget", JSON.stringify(budget));
 }, [budget]);
 
   return (
