@@ -10,6 +10,8 @@ import {
 } from "recharts";
 import { useExpense } from "../../context/ExpenseContext";
 import groupExpensesByCategory from "../../utils/groupExpensesByCategory";
+import '../../styles/charts.css'
+
 
 function ExpensePieChart() {
   const { expenses } = useExpense();
@@ -25,8 +27,8 @@ function ExpensePieChart() {
     "#EC4899",
   ];
   return (
-    <div>
-      <ResponsiveContainer width="100%" height={300}>
+    <div className="outline-none focus:outline-none" tabIndex={-1} style={{ backgroundColor: "#1F2937", padding: "20px", borderRadius: "10px", outline: "none", border: "none" }}>
+      <ResponsiveContainer style={{outline: "none"}} width="100%" height={300}>
         <PieChart
           margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
         >
@@ -55,7 +57,7 @@ function ExpensePieChart() {
                 return [`${percent}%`, name];
             }}
             contentStyle={{
-              backgroundColor: "#1F2937",
+              backgroundColor: "#1F2038",
               border: "none",
               borderRadius: "10px",
               color: "#fff",

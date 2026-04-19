@@ -3,6 +3,7 @@ import {
     Line, LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 import { useExpense } from "../../context/ExpenseContext";
+import '../../styles/charts.css'
 
 function ExpenseLineChart() {
   const { expenses } = useExpense();  // Context se expenses array nikaal rahe hain
@@ -15,12 +16,12 @@ function ExpenseLineChart() {
   console.log(chartData)
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#1F2937", padding: "20px", borderRadius: "10px", outline: "none", border: "none" }}>
       <ResponsiveContainer width="100%" height={300}> {/* Makes chart responsive to screen size */}
          <LineChart data={chartData} margin={{ top: 10, right: 30, left: 20, bottom: 5 }}>  {/* Main chart container with data + spacing */}
            <XAxis dataKey="date" stroke="#9CA3AF" tick={{ fill: "#D1D5DB" }} /> {/* Shows dates on horizontal axis */}
            <YAxis stroke="#9CA3AF" tick={{ fill: "#D1D5DB" }} /> {/* Shows amount scale on vertical axis */}
-           <Tooltip contentStyle={{backgroundColor: "#1F2937",border: "none",borderRadius: "10px",color: "#fff"}}/> {/* Shows popup info on hover */}
+           <Tooltip contentStyle={{backgroundColor: "#1F2038",border: "none",borderRadius: "10px",color: "#fff"}}/> {/* Shows popup info on hover */}
            <Legend wrapperStyle={{ color: "#E5E7EB" }} />
            <Line type="monotone" dataKey="amount" stroke="#06B6D4" strokeWidth={4} dot={{ r: 4 }} activeDot={{ r: 7 }}/>  {/* Draws smooth line using amount data */}
          </LineChart>
