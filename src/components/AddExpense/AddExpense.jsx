@@ -16,11 +16,13 @@ function AddExpense() {
   const { setExpenses } = useExpense();
 
   const handleSubmit = () => {
+    const [yyyy, mm, dd] = date.split("-");
+    const formattedDate = `${dd}-${mm}-${yyyy}`;
   const newExpense = {
     id: Date.now(),
     transType: transType,
     amount: amount,
-    date: date,
+    date: formattedDate,
     title: title,
     category: category,
     payment: payment,

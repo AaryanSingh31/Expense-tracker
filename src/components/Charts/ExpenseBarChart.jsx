@@ -13,8 +13,8 @@ function ExpenseBarChart() {
 
   return (
     <div>
-        <ResponsiveContainer width="45%" height={300}>
-            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <ResponsiveContainer width="100%" height={300}>
+            <BarChart barCategoryGap="20%" data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                 <XAxis dataKey="date"  />
                 <YAxis/>   
                 <Tooltip cursor={{ fill: "transparent" }} contentStyle={{backgroundColor: "#1F2937",border: "none",borderRadius: "10px",color: "#fff" }}/>
