@@ -4,6 +4,7 @@ import SummaryCards from './SummaryCards'
 import RecentTransactions from '../Transactions/RecentTransactions'
 import ExpenseLineChart from '../Charts/ExpenseLineChart'
 import ExpenseBarChart from '../Charts/ExpenseBarChart'
+import ExpensePieChart from '../Charts/ExpensePieChart'
 
 function Dashboard({totalSpent, budgetLeft, transactions}) {
   
@@ -22,6 +23,7 @@ function Dashboard({totalSpent, budgetLeft, transactions}) {
       <SummaryCards totalBudget="12500" totalExpenses="8400" transactions="10" />
       <ExpenseBarChart />
       <ExpenseLineChart />
+      <ExpensePieChart />
       <RecentTransactions />
     </div>
   )
