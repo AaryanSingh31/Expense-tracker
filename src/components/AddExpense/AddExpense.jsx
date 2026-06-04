@@ -5,7 +5,7 @@ import { useExpense } from "../../context/ExpenseContext";
 function AddExpense() {
 
   const [transType, setTransType] = useState("expense")
-  const [category, setCategory] = useState("food")
+  const [category, setCategory] = useState("Food")
   const [amount, setAmount] = useState("")
   const [date, setDate] = useState("")
   const [title, setTitle] = useState("")
@@ -32,7 +32,7 @@ function AddExpense() {
 
   setExpenses((prev) => [...prev, newExpense]);
 
-  setCategory("food");
+  setCategory("Food");
   setTransType("expense");
   setAmount("");
   setDate("");
@@ -108,57 +108,57 @@ function AddExpense() {
 
             <div className="flex gap-4 mt-2 h-37 justify-around flex-wrap overflow-y-scroll no-scrollbar">
               <button
-                onClick={() => setCategory("food")}
+                onClick={() => setCategory("Food")}
                 className={`text-center px-1 overflow-hidden no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "food"
+      ${category === "Food"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Food</button>
 
               <button
-                onClick={() => setCategory("transport")}
+                onClick={() => setCategory("Transportation")}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "transport"
+      ${category === "Transportation"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Transport</button>
 
               <button
-                onClick={() => setCategory("bills")}
+                onClick={() => setCategory("Bills")}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "bills"
+      ${category === "Bills"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Bills</button>
 
               <button
-                onClick={() => setCategory("shopping")}
+                onClick={() => setCategory("Shopping")}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "shopping"
+      ${category === "Shopping"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Shopping</button>
 
               <button
-                onClick={() => setCategory("entertain")}
+                onClick={() => setCategory("Entertainment")}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "entertain"
+      ${category === "Entertainment"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Entertain</button>
 
               <button
-                onClick={() => setCategory("health")}
+                onClick={() => setCategory("Health")}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "health"
+      ${category === "Health"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Health</button>
 
               <button
-                onClick={() => setCategory("education")}
+                onClick={() => setCategory("Education")}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "education"
+      ${category === "Education"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Education</button>
@@ -219,7 +219,7 @@ function AddExpense() {
           <div className="flex gap-6 justify-center px-6 mt-4">
             <button
               className='w-1/5 border-[1.5px] rounded-lg font-semibold text-white h-10 border-[#80807a] hover:bg-[#272726] duration-300 cursor-pointer'
-              onClick={() => { setCategory("food"), setTransType("expense"), setAmount(""), setDate(""), setTitle(""), setPayment("UPI"), setAccount("Main account"), setNotes("") }}>
+              onClick={() => { setCategory("Food"), setTransType("expense"), setAmount(""), setDate(""), setTitle(""), setPayment("UPI"), setAccount("Main account"), setNotes("") }}>
               Cancel
             </button>
 

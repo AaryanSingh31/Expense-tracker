@@ -5,10 +5,10 @@ import { useCatBudget } from "../../context/CatBudContext";
 function AddCategoryBudget({ onClose }) {
 
   const [catType, setCatType] = useState("Exist")
-  const [selected, setSelected] = useState("Entertainment")
+  const [selected, setSelected] = useState("")
 
-  const { catBudget, setCatBudget } = useCatBudget();
-  const [inputBud, setInputBud] = useState(catBudget);
+  const { addCategoryBudget } = useCatBudget();
+  const [inputBud, setInputBud] = useState("");
 
   const categories = [
     {
@@ -59,7 +59,7 @@ function AddCategoryBudget({ onClose }) {
             onClick={() => setCatType("Exist")}
             className={`px-6 py-2 w-56 rounded-l-lg text-sm font-medium transition-all border-r-0 duration-300 cursor-pointer 
       ${catType === "Exist"
-                ? "bg-[#30302E] text-[#3C3C7F] border-[1.5px] border-gray-600 border-r-0"
+                ? "bg-[#30302E] text-[#4c4cbd] border-[1.5px] border-gray-600 border-r-0"
                 : "text-[#cbcac4] border-[1.5px] border-gray-600 hover:text-white"}`}
           >
             Pick Existing
@@ -69,7 +69,7 @@ function AddCategoryBudget({ onClose }) {
             onClick={() => setCatType("Custom")}
             className={`px-6 py-2 w-56 rounded-r-lg text-sm font-medium transition-all border-l-0 duration-300 cursor-pointer
       ${catType === "Custom"
-                ? "bg-[#30302E] text-[#3C3C7F] border-[1.5px] border-gray-600 border-l-0"
+                ? "bg-[#30302E] text-[#4c4cbd] border-[1.5px] border-gray-600 border-l-0"
                 : "text-[#cbcac4] border-[1.5px] border-gray-600 hover:text-white"}`}
           >
             Custom Category
@@ -99,8 +99,8 @@ function AddCategoryBudget({ onClose }) {
 
                   <div
                     className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mt-3.5 ${selected === cat.name
-                        ? "border-violet-500 bg-white"
-                        : "border-gray-500 bg-[#30302E]"
+                      ? "border-violet-500 bg-white"
+                      : "border-gray-500 bg-[#30302E]"
                       }`}
                   >
                     {selected === cat.name && (
@@ -111,23 +111,38 @@ function AddCategoryBudget({ onClose }) {
               ))}
             </div>
 
-            <h3 className="text-[#cbcac4] mx-2 mb-1 text-xs">Set limit for selected category (₹)</h3>
+            <h3 className="text-[#cbcac4] mt-4 mx-2 mb-1 text-xs">Set limit for selected category (₹)</h3>
 
             <input
-                    type="number"
-                    placeholder="Enter amount"
-                    className="w-84 p-2 mx-2 rounded-lg bg-white/5 border border-white/10 text-white mb-4"
-                    value={inputBud}
-                    onChange={(e) => setInputBud(e.target.value)}
-                />
+              type="number"
+              placeholder="Enter amount"
+              className="w-84 p-2 mx-2 rounded-lg bg-white/5 border border-white/10 text-white mb-4"
+              value={inputBud}
+              onChange={(e) => setInputBud(e.target.value)}
+            />
 
           </div>
         ) : (
           <div>
             {/* Custom category UI */}
+            <h2 className='text-[#cbcac4] mt-3 mb-1 mx-2'>Category name</h2>
+
             <input
               type="text"
               placeholder="Enter category name"
+              className="w-84 p-2 mx-2 rounded-lg bg-white/5 border border-white/10 text-white mb-4"
+              value={selected}
+              onChange={(e) => setSelected(e.target.value)}
+            />
+
+            <h2 className='text-[#cbcac4] mt-3 mb-1 mx-2'>Monthly limit (₹)</h2>
+
+            <input
+              type="number"
+              placeholder="Enter amount"
+              className="w-84 p-2 mx-2 rounded-lg bg-white/5 border border-white/10 text-white mb-4"
+              value={inputBud}
+              onChange={(e) => setInputBud(e.target.value)}
             />
           </div>
         )}
@@ -142,10 +157,15 @@ function AddCategoryBudget({ onClose }) {
 
           <button
             onClick={() => {
-                            if (!inputBud) return;
-                            setCatBudget(Number(inputBud));
-                            onClose();
-                        }}
+              if (!selected.trim() || !inputBud) return;
+
+              addCategoryBudget(
+                selected,
+                inputBud
+              );
+
+              onClose();
+            }}
             className="px-14 py-1 bg-white/10 border-[1.5px] border-gray-600 rounded-lg text-white cursor-pointer hover:bg-blue-500 duration-300"
           >
             Add Budget →

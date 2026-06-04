@@ -12,7 +12,7 @@ function Budgets() {
   const [showInput, setShowInput] = useState(false)
 
   return (
-    <div className='w-full h-full rounded-r-2xl bg-[#30302e] py-4 px-10'>
+    <div className='w-full h-full rounded-r-2xl bg-[#30302e] pt-4 pb-17 md:py-4 px-10 overflow-scroll no-scrollbar'>
       <div className="flex justify-around">
         <div className="flex flex-col">
           <div className="text-white font-semibold text-3xl">Budgets</div>
@@ -31,42 +31,25 @@ function Budgets() {
           )}
       </div>
 
-      <div className="flex gap-4 px-55 mt-4">
-        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4 w-1/3'>
+      <div className="grid grid-cols-1 md:grid-cols-3 md:mx-45 gap-4 mt-6">
+        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4'>
           <div className='font-semibold text-[15px] text-[#cbcac4]'>Total budget</div>
           <div className="total text-white text-[25px] font-semibold">₹ {budget}</div>
         </div>
 
-        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4 w-1/3'>
+        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4'>
           <div className='font-semibold text-[15px] text-[#cbcac4]'>Spent so far</div>
-          <div className="total text-red-800 text-[25px] font-semibold">₹ 42671</div>
+          <div className="total text-red-700 text-[25px] font-semibold">₹ 42671</div>
         </div>
 
-        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4 w-1/3'>
+        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4'>
           <div className='font-semibold text-[15px] text-[#cbcac4]'>Remaining</div>
-          <div className="total text-green-800 text-[25px] font-semibold">₹ 17329</div>
+          <div className="total text-green-600 text-[25px] font-semibold">₹ 17329</div>
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-4 px-55">
-        <CategoryBudget category="Sambhav" />
-        <CategoryBudget category="Aaryan" />
-        <CategoryBudget category="Expense tracker" />
-        <CategoryBudget category="Sambhav" />
-        <CategoryBudget category="Aaryan" />
-        <div className="relative">
-          <button
-            className='flex flex-col justify-center bg-[#30302e] hover:bg-[#262624] duration-300 cursor-pointer border-2 border-dashed border-[#65645f] rounded-lg py-6 px-4'
-            onClick={() => setShowModal(true)}
-          >
-            <div className="text-[#cbcac4]">+</div>
-            <div className="text-[#cbcac4]">Add category budget</div>
-          </button>
-
-          {showModal && (
-            <AddCategoryBudget onClose={() => setShowModal(false)} />
-          )}
-        </div>
+      <div className="mt-8 px-2 sm:px-4 md:px-6">
+        <CategoryBudget/>
       </div>
     </div>
   )

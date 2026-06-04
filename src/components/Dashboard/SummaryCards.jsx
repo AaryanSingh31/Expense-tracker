@@ -2,8 +2,8 @@ import React from 'react'
 import { useExpense } from "../../context/ExpenseContext";
 
 function SummaryCards({totalBudget, totalExpenses, transactions}) {
-
-  const { expenses } = useExpense();
+const { expenses } = useExpense();
+  
 
   expenses.forEach((exp) => {
   console.log(exp.title);
