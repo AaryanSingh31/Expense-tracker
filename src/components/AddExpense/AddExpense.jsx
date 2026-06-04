@@ -51,7 +51,7 @@ function AddExpense() {
           <div className="Trans-type flex justify-center mt-2 px-6">
             <button
               onClick={() => setTransType("expense")}
-              className={`px-6 py-2 w-56 rounded-l-lg text-sm font-medium transition-all duration-300 
+              className={`px-6 py-2 w-56 rounded-l-lg text-sm font-medium transition-all duration-300 cursor-pointer 
       ${transType === "expense"
                   ? "bg-white text-red-500"
                   : "text-gray-400 border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -61,7 +61,7 @@ function AddExpense() {
 
             <button
               onClick={() => setTransType("income")}
-              className={`px-6 py-2 w-56 rounded-r-lg text-sm font-medium transition-all duration-300 
+              className={`px-6 py-2 w-56 rounded-r-lg text-sm font-medium transition-all duration-300 cursor-pointer
       ${transType === "income"
                   ? "bg-white text-green-500"
                   : "text-gray-400 border-[1.5px] border-gray-600 hover:text-white"}`}

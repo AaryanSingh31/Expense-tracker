@@ -11,6 +11,7 @@ import Profile from './components/Profile/Profile.jsx'
 import AddExpense from './components/AddExpense/AddExpense.jsx'
 import { ExpenseProvider } from "./context/ExpenseContext";
 import { BudgetProvider } from "./context/BudgetContext";
+import { CatBudProvider } from "./context/CatBudContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +34,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ExpenseProvider>
       <BudgetProvider>
-        <RouterProvider router={router} />
+        <CatBudProvider>
+          <RouterProvider router={router} />
+        </CatBudProvider>
       </BudgetProvider>
     </ExpenseProvider>
   </StrictMode>,
