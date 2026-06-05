@@ -7,38 +7,47 @@ import { useCatBudget } from "../../context/CatBudContext";
 
 function CategoryBudget({ category }) {
 
-  const { catBudgets } = useCatBudget();
+  const { catBudgets, deleteCategoryBudget } = useCatBudget();
   const [showModal, setShowModal] = useState(false)
   const { expenses } = useExpense();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:px-8">
 
-    {catBudgets.map((item) => {
+      {catBudgets.map((item) => {
 
-    const spent = expenses
-    .filter(exp => exp.category === item.category)
-    .reduce((sum, exp) => sum + Number(exp.amount), 0);
+        const spent = expenses
+          .filter(exp => exp.category === item.category)
+          .reduce((sum, exp) => sum + Number(exp.amount), 0);
 
-     return (
-      <div
-        key={item.id}
-        className="py-3 px-4 w-full rounded-xl border border-gray-700 bg-[#262624]"
-      >
-        <h3 className="text-white font-semibold">
-          {item.category}
-        </h3>
+        return (
+          <div
+            key={item.id}
+            className="py-3 px-4 w-full rounded-xl border border-gray-700 bg-[#262624]"
+          >
+            <div className="flex justify-between items-center">
+              <h3 className="text-white font-semibold">
+                {item.category}
+              </h3>
 
-        <p className="text-gray-400">
-          ₹{spent} of ₹{item.budget}
-        </p>
+              <button
+                onClick={() => deleteCategoryBudget(item.id)}
+                className="text-gray-400 hover:text-red-500 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
 
-        <p className="text-green-400">
-          ₹{item.budget - spent} left
-        </p>
-      </div>
-     );
-       })}
+            <p className="text-gray-400">
+              ₹{spent} of ₹{item.budget}
+            </p>
+
+            <p className="text-green-400">
+              ₹{item.budget - spent} left
+            </p>
+          </div>
+        );
+      })}
 
       <div className="relative">
         <button

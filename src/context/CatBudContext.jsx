@@ -25,11 +25,18 @@ export const CatBudProvider = ({ children }) => {
     setCatBudgets((prev) => [...prev, newBudget]);
   };
 
+  const deleteCategoryBudget = (id) => {
+      setCatBudgets((prev) =>
+        prev.filter((item) => item.id !== id)
+      );
+    };
+
   return (
     <CatBudContext.Provider
       value={{
         catBudgets,
         addCategoryBudget,
+        deleteCategoryBudget,
       }}
     >
       {children}

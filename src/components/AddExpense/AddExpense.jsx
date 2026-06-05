@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../../styles/AddExp.css'
 import { useExpense } from "../../context/ExpenseContext";
+import OtherExp from './OtherExp';
 
 function AddExpense() {
 
@@ -13,34 +14,38 @@ function AddExpense() {
   const [account, setAccount] = useState("Main account")
   const [notes, setNotes] = useState("")
 
+  const [selectedButton, setSelectedButton] = useState("Food");
+
+  const [showOther, setShowOther] = useState(false)
+
   const { setExpenses } = useExpense();
 
   const handleSubmit = () => {
     const [yyyy, mm, dd] = date.split("-");
     const formattedDate = `${dd}-${mm}-${yyyy}`;
-  const newExpense = {
-    id: Date.now(),
-    transType: transType,
-    amount: amount,
-    date: formattedDate,
-    title: title,
-    category: category,
-    payment: payment,
-    account: account,
-    notes: notes
+    const newExpense = {
+      id: Date.now(),
+      transType: transType,
+      amount: amount,
+      date: formattedDate,
+      title: title,
+      category: category,
+      payment: payment,
+      account: account,
+      notes: notes
+    };
+
+    setExpenses((prev) => [...prev, newExpense]);
+
+    setCategory("Food");
+    setTransType("expense");
+    setAmount("");
+    setDate("");
+    setTitle("");
+    setPayment("UPI");
+    setAccount("Main account");
+    setNotes("")
   };
-
-  setExpenses((prev) => [...prev, newExpense]);
-
-  setCategory("Food");
-  setTransType("expense");
-  setAmount("");
-  setDate("");
-  setTitle("");
-  setPayment("UPI");
-  setAccount("Main account");
-  setNotes("")
-};
 
   return (
     <div className='flex justify-center items-center w-full h-full rounded-r-2xl bg-[#30302e]'>
@@ -108,7 +113,7 @@ function AddExpense() {
 
             <div className="flex gap-4 mt-2 h-37 justify-around flex-wrap overflow-y-scroll no-scrollbar">
               <button
-                onClick={() => setCategory("Food")}
+                onClick={() => {setCategory("Food"), setSelectedButton("Food")}}
                 className={`text-center px-1 overflow-hidden no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Food"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -116,7 +121,7 @@ function AddExpense() {
               >Food</button>
 
               <button
-                onClick={() => setCategory("Transportation")}
+                onClick={() => {setCategory("Transportation"), setSelectedButton("Transportation");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Transportation"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -124,7 +129,7 @@ function AddExpense() {
               >Transport</button>
 
               <button
-                onClick={() => setCategory("Bills")}
+                onClick={() => {setCategory("Bills"), setSelectedButton("Bills");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Bills"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -132,7 +137,7 @@ function AddExpense() {
               >Bills</button>
 
               <button
-                onClick={() => setCategory("Shopping")}
+                onClick={() => {setCategory("Shopping"), setSelectedButton("Shopping");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Shopping"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -140,7 +145,7 @@ function AddExpense() {
               >Shopping</button>
 
               <button
-                onClick={() => setCategory("Entertainment")}
+                onClick={() => {setCategory("Entertainment"), setSelectedButton("Entertainment");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Entertainment"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -148,7 +153,7 @@ function AddExpense() {
               >Entertain</button>
 
               <button
-                onClick={() => setCategory("Health")}
+                onClick={() => {setCategory("Health"), setSelectedButton("Health");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Health"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -156,7 +161,7 @@ function AddExpense() {
               >Health</button>
 
               <button
-                onClick={() => setCategory("Education")}
+                onClick={() => {setCategory("Education"), setSelectedButton("Education");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
       ${category === "Education"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
@@ -164,12 +169,19 @@ function AddExpense() {
               >Education</button>
 
               <button
-                onClick={() => setCategory("other")}
+                onClick={() => { setShowOther(true), setSelectedButton("Other"); }}
                 className={` text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
-      ${category === "other"
+      ${selectedButton === "Other"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
               >Other</button>
+
+              {showOther && (
+                <OtherExp
+                  onClose={() => setShowOther(false)}
+                  setCategory={setCategory}
+                />
+              )}
             </div>
           </section>
 
@@ -193,7 +205,7 @@ function AddExpense() {
 
               <div className="flex w-full flex-col">
                 <label className='text-[#aaaaa7] font-semibold'>Wallet/account</label>
-                <select 
+                <select
                   className='bg-[#30302e] border-[1.5px] mt-1 h-9 w-full min-w-0 border-[#494945] rounded-lg px-2 focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-white placeholder-[#686867]'
                   value={account}
                   onChange={(e) => setAccount(e.target.value)}>
@@ -213,7 +225,7 @@ function AddExpense() {
               type="text"
               placeholder='Any extra detail'
               value={notes}
-              onChange={(e) => setNotes(e.target.value)}/>
+              onChange={(e) => setNotes(e.target.value)} />
           </div>
 
           <div className="flex gap-6 justify-center px-6 mt-4">
@@ -223,9 +235,9 @@ function AddExpense() {
               Cancel
             </button>
 
-            <button 
+            <button
               className='w-1/2 border-[1.5px] rounded-lg font-semibold text-white h-10 border-[#80807a] hover:bg-[#272726] duration-300 cursor-pointer'
-              onClick={() => {setAmount(amount), setDate(date), setTitle(title), setPayment(payment), setAccount(account), setNotes(notes), console.log(amount), handleSubmit(), console.log(date),console.log(title) , console.log(payment), console.log(account), console.log(notes), console.log(category), console.log(transType)}}>
+              onClick={() => { setAmount(amount), setDate(date), setTitle(title), setPayment(payment), setAccount(account), setNotes(notes), console.log(amount), handleSubmit(), console.log(date), console.log(title), console.log(payment), console.log(account), console.log(notes), console.log(category), console.log(transType) }}>
               Save expense →
             </button>
           </div>

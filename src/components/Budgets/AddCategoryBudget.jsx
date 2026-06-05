@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useCatBudget } from "../../context/CatBudContext";
+import { useExpense } from "../../context/ExpenseContext";
 
 function AddCategoryBudget({ onClose }) {
 
@@ -10,23 +11,44 @@ function AddCategoryBudget({ onClose }) {
   const { addCategoryBudget } = useCatBudget();
   const [inputBud, setInputBud] = useState("");
 
+  const { expenses } = useExpense();
+
   const categories = [
     {
       name: "Entertainment",
-      amount: "₹1,980 spent this month",
       icon: "🎬",
     },
     {
       name: "Health",
-      amount: "₹0 spent this month",
       icon: "🏥",
     },
     {
       name: "Education",
-      amount: "₹450 spent this month",
       icon: "📚",
     },
+    {
+      name: "Food",
+      icon: "🍔",
+    },
+    {
+      name: "Transportation",
+      icon: "🚗",
+    },
+    {
+      name: "Bills",
+      icon: "📄",
+    },
+    {
+      name: "Shopping",
+      icon: "🛍️",
+    },
   ];
+
+  const getSpentAmount = (category) => {
+  return expenses
+    .filter(exp => exp.category === category)
+    .reduce((sum, exp) => sum + Number(exp.amount), 0);
+};
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -81,7 +103,7 @@ function AddCategoryBudget({ onClose }) {
             {/* Existing category UI */}
             <h2 className='text-[#cbcac4] mt-3'>Unbudgeted categories</h2>
 
-            <div className="category-list">
+            <div className="category-list overflow-y-scroll no-scrollbar h-68">
               {categories.map((cat) => (
                 <div
                   key={cat.name}
@@ -93,7 +115,7 @@ function AddCategoryBudget({ onClose }) {
 
                     <div>
                       <h4 className='text-white'>{cat.name}</h4>
-                      <p className='text-[#cbcac4]'>{cat.amount}</p>
+                      <p className='text-[#cbcac4]'>₹{getSpentAmount(cat.name)} spent this month</p>
                     </div>
                   </div>
 
