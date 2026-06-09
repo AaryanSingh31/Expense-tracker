@@ -6,8 +6,8 @@ import PrivacyCard from './PrivacyCard'
 function Profile() {
   return (
     <div className='w-full h-full rounded-r-2xl bg-[#30302e] overflow-y-auto no-scrollbar px-2'>
-      <div className="text-xl text-white ml-12 pt-3 font-semibold">Profile & Setting</div>
-      <div className="text-xl text-[#b0b0ac] ml-12 mb-4">Manage your account and preferences</div>
+      <div className="text-xl text-white ml-12 pt-3.5 font-semibold">Profile & Setting</div>
+      <div className="text-[#b0b0ac] ml-12 mb-3.5">Manage your account and preferences</div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-5 max-w-6xl mx-auto">
 
