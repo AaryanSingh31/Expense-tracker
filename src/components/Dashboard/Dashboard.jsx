@@ -1,7 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
 import SummaryCards from './SummaryCards'
-import RecentTransactions from '../Transactions/RecentTransactions'
 import ExpenseLineChart from '../Charts/ExpenseLineChart'
 import ExpenseBarChart from '../Charts/ExpenseBarChart'
 import ExpensePieChart from '../Charts/ExpensePieChart'
@@ -24,7 +23,6 @@ function Dashboard({totalSpent, budgetLeft, transactions}) {
       <ExpenseBarChart />
       <ExpenseLineChart />
       <ExpensePieChart />
-      <RecentTransactions />
     </div>
   )
 }

@@ -114,7 +114,7 @@ function AddExpense() {
             <div className="flex gap-4 mt-2 h-37 justify-around flex-wrap overflow-y-scroll no-scrollbar">
               <button
                 onClick={() => {setCategory("Food"), setSelectedButton("Food")}}
-                className={`text-center px-1 overflow-hidden no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-hidden no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Food"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -122,7 +122,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Transportation"), setSelectedButton("Transportation");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Transportation"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -130,7 +130,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Bills"), setSelectedButton("Bills");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Bills"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -138,7 +138,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Shopping"), setSelectedButton("Shopping");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Shopping"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -146,7 +146,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Entertainment"), setSelectedButton("Entertainment");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Entertainment"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -154,7 +154,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Health"), setSelectedButton("Health");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Health"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -162,7 +162,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Education"), setSelectedButton("Education");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${category === "Education"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -170,7 +170,7 @@ function AddExpense() {
 
               <button
                 onClick={() => { setShowOther(true), setSelectedButton("Other"); }}
-                className={` text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all duration-300 
+                className={` text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
       ${selectedButton === "Other"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -192,21 +192,21 @@ function AddExpense() {
               <div className="flex w-full flex-col">
                 <label className='text-[#aaaaa7] font-semibold whitespace-nowrap'>Payment Method</label>
                 <select
-                  className='bg-[#30302e] border-[1.5px] mt-1 h-9 w-full min-w-0 border-[#494945] rounded-lg px-2 focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-white placeholder-[#686867]'
+                  className='bg-[#30302e] border-[1.5px] mt-1 h-9 w-full min-w-0 border-[#494945] rounded-lg px-2 focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-white placeholder-[#686867] cursor-pointer'
                   value={payment}
                   onChange={(e) => setPayment(e.target.value)}>
                   <option value="UPI">UPI</option>
                   <option value="Cash">Cash</option>
                   <option value="Credit card">Credit card</option>
                   <option value="Debit card">Debit card</option>
-                  <option value="Net Banking">Net Banking</option>
+                  <option value="Net Banking">Net Banking</option> cursor-pointer
                 </select>
               </div>
 
               <div className="flex w-full flex-col">
                 <label className='text-[#aaaaa7] font-semibold'>Wallet/account</label>
                 <select
-                  className='bg-[#30302e] border-[1.5px] mt-1 h-9 w-full min-w-0 border-[#494945] rounded-lg px-2 focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-white placeholder-[#686867]'
+                  className='bg-[#30302e] border-[1.5px] mt-1 h-9 w-full min-w-0 border-[#494945] rounded-lg px-2 focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-white placeholder-[#686867] cursor-pointer'
                   value={account}
                   onChange={(e) => setAccount(e.target.value)}>
                   <option value="Main account">Main account</option>

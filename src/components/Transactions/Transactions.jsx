@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useExpense } from "../../context/ExpenseContext";
+import TransactionCard from './TransactionCard';
 
 function Transactions() {
 
@@ -9,12 +10,41 @@ function Transactions() {
   const [type, setType] = useState("All")
   const [cat, setCat] = useState("All categories")
   const [month, setMonth] = useState("This Month")
+  const [showAll, setShowAll] = useState(false)
 
   const { expenses } = useExpense();
 
   const totalEntries = expenses.length;
 
-  const entry = totalEntries === 1 ? "entry" : "entries";;
+  const entry = totalEntries === 1 ? "entry" : "entries";
+
+  // const count = showAll
+  //   ? totalEntries
+  //   : Math.min(totalEntries, 6);
+
+  const filteredExpenses = expenses.filter((expense) => {
+    const categoryMatch =
+      cat === "All categories" ||
+      expense.category === cat;
+
+    const typeMatch =
+      type === "All" ||
+      expense.transType.toLowerCase() === type.toLowerCase();
+
+    const titleMatch =
+      expense.title.toLowerCase().includes(search.toLowerCase()) ||
+      expense.notes.toLowerCase().includes(search.toLowerCase()) ||
+      expense.category.toLowerCase().includes(search.toLowerCase()) ||
+      expense.payment.toLowerCase().includes(search.toLowerCase());
+
+    return categoryMatch && typeMatch && titleMatch;
+  });
+
+  const filteredCount = filteredExpenses.length;
+
+  const count = showAll
+    ? filteredCount
+    : Math.min(filteredCount, 6);
 
   const currentMonth = new Date().toLocaleString("en-US", {
     month: "long",
@@ -102,6 +132,24 @@ function Transactions() {
             <option>Last Month</option>
           </select>
 
+        </div>
+      </div>
+
+      <div className="rounded-lg bg-[#262624] mt-5 mb-5 border-[1.5px] border-[#494945] ">
+        <div className="hidden md:grid grid-cols-[2.1fr_1fr_1fr_1fr_1fr] rounded-t-lg justify-around py-2 pl-17 border-b-[1.5px] border-[#494945]">
+          <div className='text-[#9d9d99]'>Description</div>
+          <div className='text-[#9d9d99]'>Category</div>
+          <div className='text-[#9d9d99]'>Payment</div>
+          <div className='text-[#9d9d99]'>Amount</div>
+          <div className='text-[#9d9d99]'>Date</div>
+        </div>
+        <TransactionCard showAll={showAll} expenses={filteredExpenses} />
+        <div className="flex rounded-b-lg justify-between px-10 py-2 ">
+          <div className='text-[#9d9d99] mt-1.5'>Showing {count} of {totalEntries}</div>
+          <button
+            className='px-5 h-10 bg-[#1d1d1c] rounded-lg text-sm text-white font-semibold border-[1.5px] border-[#494945] transition-all duration-300 hover:bg-[#2b2b29] cursor-pointer'
+            onClick={() => setShowAll(!showAll)}
+          >{showAll ? "Show less" : "Show all"}</button>
         </div>
       </div>
     </div>
