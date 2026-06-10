@@ -122,7 +122,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Transportation"), setSelectedButton("Transportation");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
       ${category === "Transportation"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -138,7 +138,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Shopping"), setSelectedButton("Shopping");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
       ${category === "Shopping"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -146,7 +146,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Entertainment"), setSelectedButton("Entertainment");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
       ${category === "Entertainment"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
@@ -162,7 +162,7 @@ function AddExpense() {
 
               <button
                 onClick={() => {setCategory("Education"), setSelectedButton("Education");}}
-                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
+                className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
       ${category === "Education"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}

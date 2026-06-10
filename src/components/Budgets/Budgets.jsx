@@ -45,17 +45,17 @@ function Budgets() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:mx-45 gap-4 mt-6">
-        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4'>
+        <div className='flex flex-col bg-[#262624] border-[1.5px] border-[#494945] rounded-lg py-4 px-4'>
           <div className='font-semibold text-[15px] text-[#cbcac4]'>Total budget</div>
           <div className="total text-white text-[25px] font-semibold">₹ {budget}</div>
         </div>
 
-        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4'>
+        <div className='flex flex-col bg-[#262624] border-[1.5px] border-[#494945] rounded-lg py-4 px-4'>
           <div className='font-semibold text-[15px] text-[#cbcac4]'>Spent so far</div>
           <div className="total text-red-700 text-[25px] font-semibold">₹ {totalSpent}</div>
         </div>
 
-        <div className='flex flex-col bg-[#262624] rounded-lg py-4 px-4'>
+        <div className='flex flex-col bg-[#262624] border-[1.5px] border-[#494945] rounded-lg py-4 px-4'>
           <div className='font-semibold text-[15px] text-[#cbcac4]'>Remaining</div>
           <div className="total text-green-600 text-[25px] font-semibold">₹ {remaining}</div>
         </div>

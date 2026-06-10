@@ -5,7 +5,7 @@ import PrivacyCard from './PrivacyCard'
 
 function Profile() {
   return (
-    <div className='w-full h-full rounded-r-2xl bg-[#30302e] overflow-y-auto no-scrollbar px-2'>
+    <div className='w-full h-full rounded-r-2xl bg-[#30302e] overflow-y-auto no-scrollbar px-2 pb-15 md:pb-0'>
       <div className="text-xl text-white ml-12 pt-3.5 font-semibold">Profile & Setting</div>
       <div className="text-[#b0b0ac] ml-12 mb-3.5">Manage your account and preferences</div>
 

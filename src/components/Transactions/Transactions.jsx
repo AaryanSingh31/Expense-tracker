@@ -32,10 +32,10 @@ function Transactions() {
       expense.transType.toLowerCase() === type.toLowerCase();
 
     const titleMatch =
-      expense.title.toLowerCase().includes(search.toLowerCase()) ||
-      expense.notes.toLowerCase().includes(search.toLowerCase()) ||
-      expense.category.toLowerCase().includes(search.toLowerCase()) ||
-      expense.payment.toLowerCase().includes(search.toLowerCase());
+      (expense.title || "").toLowerCase().includes(search.toLowerCase()) ||
+    (expense.notes || "").toLowerCase().includes(search.toLowerCase()) ||
+    (expense.category || "").toLowerCase().includes(search.toLowerCase()) ||
+    (expense.payment || "").toLowerCase().includes(search.toLowerCase());
 
     return categoryMatch && typeMatch && titleMatch;
   });
@@ -53,7 +53,7 @@ function Transactions() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className='w-full h-full rounded-r-2xl bg-[#30302e] overflow-x-scroll no-scrollbar px-4 sm:px-8 md:px-12 lg:px-16 pt-4'>
+    <div className='w-full h-full rounded-r-2xl bg-[#30302e] overflow-x-scroll no-scrollbar px-4 sm:px-8 md:px-12 lg:px-16 pt-4 pb-10 md:pb-0'>
       <div className="text-xl text-white font-semibold">Transactions</div>
       <div className="text-[#b0b0ac] mb-4">{currentMonth} {currentYear} - {totalEntries} {entry}</div>
 

@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import { useEffect } from "react";
-import dummyExpenses from "../dummy/dummyExp";
 
 const ExpenseContext = createContext();
 
