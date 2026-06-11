@@ -6,10 +6,20 @@ import TransactionCard from './TransactionCard';
 
 function Transactions() {
 
+  const currentDate = new Date();
+
   const [search, setSearch] = useState("")
   const [type, setType] = useState("All")
   const [cat, setCat] = useState("All categories")
-  const [month, setMonth] = useState("This Month")
+
+  const [month, setMonth] = useState(
+    String(currentDate.getMonth() + 1).padStart(2, "0")
+  );
+
+  const [year, setYear] = useState(
+    String(currentDate.getFullYear())
+  );
+
   const [showAll, setShowAll] = useState(false)
 
   const { expenses } = useExpense();
@@ -17,6 +27,14 @@ function Transactions() {
   const totalEntries = expenses.length;
 
   const entry = totalEntries === 1 ? "entry" : "entries";
+
+  const years = [
+    ...new Set(
+      expenses
+        .map(exp => exp.date?.split("-")[2])
+        .filter(Boolean)
+    )
+  ].sort((a, b) => Number(b) - Number(a));
 
   // const count = showAll
   //   ? totalEntries
@@ -37,7 +55,18 @@ function Transactions() {
       (expense.category || "").toLowerCase().includes(search.toLowerCase()) ||
       (expense.payment || "").toLowerCase().includes(search.toLowerCase());
 
-    return categoryMatch && typeMatch && titleMatch;
+    const [day, monthPart, yearPart] =
+      (expense.date || "").split("-");
+
+    const monthMatch =
+      month === "All" ||
+      monthPart === month;
+
+    const yearMatch =
+      year === "All" ||
+      yearPart === year;
+
+    return categoryMatch && typeMatch && titleMatch && monthMatch && yearMatch;
   });
 
   const filteredCount = filteredExpenses.length;
@@ -128,8 +157,33 @@ function Transactions() {
             value={month}
             onChange={(e) => setMonth(e.target.value)}
           >
-            <option>This Month</option>
-            <option>Last Month</option>
+            <option value="All">All Months</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+
+          <select
+            className="w-full md:flex-1 bg-[#262624] border-[1.5px] h-10 px-3 cursor-pointer border-[#494945] rounded-lg focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-[#b7b5a7]"
+            value={year}
+            onChange={(e) => setYear(e.target.value)}
+          >
+            <option value="All">All Years</option>
+
+            {years.map((y) => (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            ))}
           </select>
 
         </div>
