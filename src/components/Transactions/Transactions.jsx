@@ -29,13 +29,13 @@ function Transactions() {
 
     const typeMatch =
       type === "All" ||
-      expense.transType.toLowerCase() === type.toLowerCase();
+      expense.transType?.toLowerCase() === type.toLowerCase();
 
     const titleMatch =
       (expense.title || "").toLowerCase().includes(search.toLowerCase()) ||
-    (expense.notes || "").toLowerCase().includes(search.toLowerCase()) ||
-    (expense.category || "").toLowerCase().includes(search.toLowerCase()) ||
-    (expense.payment || "").toLowerCase().includes(search.toLowerCase());
+      (expense.notes || "").toLowerCase().includes(search.toLowerCase()) ||
+      (expense.category || "").toLowerCase().includes(search.toLowerCase()) ||
+      (expense.payment || "").toLowerCase().includes(search.toLowerCase());
 
     return categoryMatch && typeMatch && titleMatch;
   });

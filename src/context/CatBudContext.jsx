@@ -15,11 +15,12 @@ export const CatBudProvider = ({ children }) => {
     );
   }, [catBudgets]);
 
-  const addCategoryBudget = (category, budget) => {
+  const addCategoryBudget = (category, budget, categoryIcon) => {
     const newBudget = {
       id: crypto.randomUUID(),
       category,
       budget: Number(budget),
+      categoryIcon,
     };
 
     setCatBudgets((prev) => [...prev, newBudget]);

@@ -20,7 +20,7 @@ function RecentTransaction() {
                     >
                         <div className='flex items-center gap-4'>
                             <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-white">
-                                {expense.title[0]}
+                                {expense.categoryIcon}
                             </div>
 
                             <div className='flex flex-col'>
@@ -55,7 +55,7 @@ function RecentTransaction() {
                     <div className='md:hidden bg-[#2e2e2d] border-b border-[#494945] p-4'>
                         <div className='flex items-center gap-3 mb-3'>
                             <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-white">
-                                {expense.title[0]}
+                                {expense.categoryIcon}
                             </div>
 
                             <div>

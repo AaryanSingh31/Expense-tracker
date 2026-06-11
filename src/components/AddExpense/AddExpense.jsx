@@ -13,12 +13,23 @@ function AddExpense() {
   const [payment, setPayment] = useState("UPI")
   const [account, setAccount] = useState("Main account")
   const [notes, setNotes] = useState("")
+  const [customIcon, setCustomIcon] = useState("");
 
   const [selectedButton, setSelectedButton] = useState("Food");
 
   const [showOther, setShowOther] = useState(false)
 
   const { setExpenses } = useExpense();
+
+  const categoryIcons = {
+  Food: "🍔",
+  Transportation: "🚕",
+  Bills: "📄",
+  Shopping: "🛍️",
+  Entertainment: "🎬",
+  Health: "🏥",
+  Education: "📚",
+};
 
   const handleSubmit = () => {
     const [yyyy, mm, dd] = date.split("-");
@@ -30,6 +41,7 @@ function AddExpense() {
       date: formattedDate,
       title: title,
       category: category,
+      categoryIcon: customIcon || categoryIcons[category] || "📦",
       payment: payment,
       account: account,
       notes: notes
@@ -115,58 +127,58 @@ function AddExpense() {
               <button
                 onClick={() => {setCategory("Food"), setSelectedButton("Food")}}
                 className={`text-center px-1 overflow-hidden no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
-      ${category === "Food"
+      ${selectedButton === "Food"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Food</button>
+              ><div className="flex flex-col"><span>🍔</span><span>Food</span></div></button>
 
               <button
                 onClick={() => {setCategory("Transportation"), setSelectedButton("Transportation");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
-      ${category === "Transportation"
+      ${selectedButton === "Transportation"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Transport</button>
+              ><div className="flex flex-col"><span>🚕</span><span>Transport</span></div></button>
 
               <button
                 onClick={() => {setCategory("Bills"), setSelectedButton("Bills");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
-      ${category === "Bills"
+      ${selectedButton === "Bills"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Bills</button>
+              ><div className="flex flex-col"><span>📄</span><span>Bills</span></div></button>
 
               <button
                 onClick={() => {setCategory("Shopping"), setSelectedButton("Shopping");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
-      ${category === "Shopping"
+      ${selectedButton === "Shopping"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Shopping</button>
+              ><div className="flex flex-col"><span>🛍️</span><span>Shopping</span></div></button>
 
               <button
                 onClick={() => {setCategory("Entertainment"), setSelectedButton("Entertainment");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
-      ${category === "Entertainment"
+      ${selectedButton === "Entertainment"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Entertain</button>
+              ><div className="flex flex-col"><span>🎬</span><span>Entertain</span></div></button>
 
               <button
                 onClick={() => {setCategory("Health"), setSelectedButton("Health");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg text-sm font-medium transition-all cursor-pointer duration-300 
-      ${category === "Health"
+      ${selectedButton === "Health"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Health</button>
+              ><div className="flex flex-col"><span>🏥</span><span>Health</span></div></button>
 
               <button
                 onClick={() => {setCategory("Education"), setSelectedButton("Education");}}
                 className={`text-center px-1 overflow-scroll no-scrollbar h-16 w-1/5 rounded-lg sm:text-sm text-[11px] font-medium transition-all cursor-pointer duration-300 
-      ${category === "Education"
+      ${selectedButton === "Education"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Education</button>
+              ><div className="flex flex-col"><span>📚</span><span>Education</span></div></button>
 
               <button
                 onClick={() => { setShowOther(true), setSelectedButton("Other"); }}
@@ -174,12 +186,13 @@ function AddExpense() {
       ${selectedButton === "Other"
                     ? "bg-white text-[#4035a0] border-2 border-[#422fee]"
                     : "text-[#a5a39c] border-[1.5px] border-gray-600 hover:text-white"}`}
-              >Other</button>
+              ><div className="flex flex-col"><span>📦</span><span>Other</span></div></button>
 
               {showOther && (
                 <OtherExp
                   onClose={() => setShowOther(false)}
                   setCategory={setCategory}
+                  setCustomIcon={setCustomIcon}
                 />
               )}
             </div>
@@ -231,7 +244,7 @@ function AddExpense() {
           <div className="flex gap-6 justify-center px-6 mt-4">
             <button
               className='w-1/5 border-[1.5px] rounded-lg font-semibold text-white h-10 border-[#80807a] hover:bg-[#272726] duration-300 cursor-pointer'
-              onClick={() => { setCategory("Food"), setTransType("expense"), setAmount(""), setDate(""), setTitle(""), setPayment("UPI"), setAccount("Main account"), setNotes("") }}>
+              onClick={() => { setCategory("Food"), setSelectedButton("Food"), setTransType("expense"), setAmount(""), setDate(""), setTitle(""), setPayment("UPI"), setAccount("Main account"), setNotes("") }}>
               Cancel
             </button>
 

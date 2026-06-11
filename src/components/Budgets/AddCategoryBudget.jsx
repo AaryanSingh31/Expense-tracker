@@ -7,8 +7,13 @@ function AddCategoryBudget({ onClose }) {
 
   const [catType, setCatType] = useState("Exist")
   const [selected, setSelected] = useState("")
+  const [selectedIcon, setSelectedIcon] = useState("📦");
 
-  const { addCategoryBudget } = useCatBudget();
+  const {
+    addCategoryBudget,
+    catBudgets
+  } = useCatBudget();
+  
   const [inputBud, setInputBud] = useState("");
 
   const { expenses } = useExpense();
@@ -45,10 +50,10 @@ function AddCategoryBudget({ onClose }) {
   ];
 
   const getSpentAmount = (category) => {
-  return expenses
-    .filter(exp => exp.category === category)
-    .reduce((sum, exp) => sum + Number(exp.amount), 0);
-};
+    return expenses
+      .filter(exp => exp.category === category)
+      .reduce((sum, exp) => sum + Number(exp.amount), 0);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -108,7 +113,10 @@ function AddCategoryBudget({ onClose }) {
                 <div
                   key={cat.name}
                   className="category-card bg-[#262624] p-2 m-2 rounded-lg border-[1.5px] border-gray-600 cursor-pointer flex justify-between"
-                  onClick={() => setSelected(cat.name)}
+                  onClick={() => {
+                    setSelected(cat.name);
+                    setSelectedIcon(cat.icon);
+                  }}
                 >
                   <div className="left flex gap-1">
                     <span className="mt-2.5 text-xl">{cat.icon}</span>
@@ -157,6 +165,18 @@ function AddCategoryBudget({ onClose }) {
               onChange={(e) => setSelected(e.target.value)}
             />
 
+            <h2 className='text-[#cbcac4] mt-3 mb-1 mx-2'>
+              Category Icon
+            </h2>
+
+            <input
+              type="text"
+              placeholder="e.g. 💪"
+              className="w-84 p-2 mx-2 rounded-lg bg-white/5 border border-white/10 text-white mb-4"
+              value={selectedIcon}
+              onChange={(e) => setSelectedIcon(e.target.value)}
+            />
+
             <h2 className='text-[#cbcac4] mt-3 mb-1 mx-2'>Monthly limit (₹)</h2>
 
             <input
@@ -181,9 +201,21 @@ function AddCategoryBudget({ onClose }) {
             onClick={() => {
               if (!selected.trim() || !inputBud) return;
 
+              if (
+                catBudgets.some(
+                  item =>
+                    item.category.toLowerCase() ===
+                    selected.toLowerCase()
+                )
+              ) {
+                alert("Category already exists");
+                return;
+              }
+
               addCategoryBudget(
                 selected,
-                inputBud
+                inputBud,
+                selectedIcon
               );
 
               onClose();
