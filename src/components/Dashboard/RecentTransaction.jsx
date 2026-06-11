@@ -1,9 +1,7 @@
 import react from 'react'
 import { useExpense } from '../../context/ExpenseContext'
 
-function RecentTransaction() {
-
-    const { expenses } = useExpense()
+function RecentTransaction({ expenses }) {
 
     const transactions = [...expenses].reverse();
 

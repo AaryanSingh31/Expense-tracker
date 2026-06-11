@@ -7,8 +7,7 @@ import formatDate from '../../utils/formatDate';
 import { useExpense } from '../../context/ExpenseContext';
 import '../../styles/charts.css'
 
-function ExpenseBarChart() {
-    const { expenses } = useExpense();
+function ExpenseBarChart({ expenses }) {
 
     const chartData = groupExpensesByDate(expenses);
 

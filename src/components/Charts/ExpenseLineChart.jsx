@@ -6,8 +6,7 @@ import { useExpense } from "../../context/ExpenseContext";
 import '../../styles/charts.css'
 import groupExpensesByDate from "../../utils/groupExpenseByDate";
 
-function ExpenseLineChart() {
-  const { expenses } = useExpense();  // Context se expenses array nikaal rahe hain
+function ExpenseLineChart({ expenses }) {
 
   const chartData = groupExpensesByDate(expenses);
   console.log(chartData)

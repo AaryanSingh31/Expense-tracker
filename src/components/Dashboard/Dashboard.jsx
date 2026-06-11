@@ -21,9 +21,49 @@ function Dashboard() {
 
   const currentYear = new Date().getFullYear();
 
-  const totalEntries = expenses.length;
+  const currentDate = new Date();
 
-  const totalSpent = expenses.reduce(
+  const filteredExpenses = expenses.filter((expense) => {
+    const [day, month, year] = expense.date.split("-");
+
+    const expenseDate = new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day)
+    );
+
+    if (months === "This Month") {
+      return (
+        expenseDate.getMonth() === currentDate.getMonth() &&
+        expenseDate.getFullYear() === currentDate.getFullYear()
+      );
+    }
+
+    if (months === "Last Month") {
+      const lastMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - 1,
+        1
+      );
+
+      return (
+        expenseDate.getMonth() === lastMonth.getMonth() &&
+        expenseDate.getFullYear() === lastMonth.getFullYear()
+      );
+    }
+
+    if (months === "This year") {
+      return (
+        expenseDate.getFullYear() === currentDate.getFullYear()
+      );
+    }
+
+    return true;
+  });
+
+  const totalEntries = filteredExpenses.length;
+
+  const totalSpent = filteredExpenses.reduce(
     (sum, expense) => sum + Number(expense.amount),
     0
   );
@@ -61,10 +101,10 @@ function Dashboard() {
       <SummaryCards totalSpent={totalSpent} remainingBudget={remaining} transactions={totalEntries} />
       <div className="flex flex-col gap-3">
         <div className="flex flex-col md:flex-row gap-3 justify-between">
-          <ExpenseBarChart />
-          <ExpensePieChart />
+          <ExpenseBarChart expenses={filteredExpenses} />
+          <ExpensePieChart expenses={filteredExpenses} />
         </div>
-        <ExpenseLineChart />
+        <ExpenseLineChart expenses={filteredExpenses} />
       </div>
 
       <div className="rounded-lg bg-[#262624] mt-5 mb-5 border-[1.5px] border-[#494945] ">
@@ -85,7 +125,7 @@ function Dashboard() {
           <div className='text-[#9d9d99]'>Amount</div>
           <div className='text-[#9d9d99]'>Date</div>
         </div>
-        <RecentTransaction />
+        <RecentTransaction expenses={filteredExpenses} />
       </div>
     </div>
   )

@@ -13,8 +13,8 @@ import groupExpensesByCategory from "../../utils/groupExpensesByCategory";
 import '../../styles/charts.css'
 
 
-function ExpensePieChart() {
-  const { expenses } = useExpense();
+function ExpensePieChart({ expenses }) {
+  
   const groupedExpenses = groupExpensesByCategory(expenses);
   const COLORS = [
     "#06B6D4",
