@@ -5,11 +5,10 @@ import AddCategoryBudget from './AddCategoryBudget';
 import { useCatBudget } from "../../context/CatBudContext";
 
 
-function CategoryBudget({ category }) {
+function CategoryBudget({ expenses }) {
 
   const { catBudgets, deleteCategoryBudget } = useCatBudget();
   const [showModal, setShowModal] = useState(false)
-  const { expenses } = useExpense();
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:px-8">

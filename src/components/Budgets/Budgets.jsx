@@ -11,13 +11,55 @@ function Budgets() {
   const [showModal, setShowModal] = useState(false)
   const [showInput, setShowInput] = useState(false)
 
+  const [months, setMonths] = useState("This Month");
+
   const currentMonth = new Date().toLocaleString("en-US", {
     month: "long",
   });
 
   const currentYear = new Date().getFullYear();
 
-  const totalSpent = expenses.reduce(
+  const currentDate = new Date();
+
+  const filteredExpenses = expenses.filter((expense) => {
+    const [day, month, year] = expense.date.split("-");
+
+    const expenseDate = new Date(
+      Number(year),
+      Number(month) - 1,
+      Number(day)
+    );
+
+    if (months === "This Month") {
+      return (
+        expenseDate.getMonth() === currentDate.getMonth() &&
+        expenseDate.getFullYear() === currentDate.getFullYear()
+      );
+    }
+
+    if (months === "Last Month") {
+      const lastMonth = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - 1,
+        1
+      );
+
+      return (
+        expenseDate.getMonth() === lastMonth.getMonth() &&
+        expenseDate.getFullYear() === lastMonth.getFullYear()
+      );
+    }
+
+    if (months === "This year") {
+      return (
+        expenseDate.getFullYear() === currentDate.getFullYear()
+      );
+    }
+
+    return true;
+  });
+
+  const totalSpent = filteredExpenses.reduce(
     (sum, expense) => sum + Number(expense.amount),
     0
   );
@@ -32,16 +74,28 @@ function Budgets() {
           <div className="text-[#cbcac4]">{currentMonth} {currentYear} — set spending limits per category</div>
         </div>
 
-        <button
-          className='flex gap-1 border-[1.5px] pt-1.5 px-2 h-10 rounded-lg text-white border-[#65645f] hover:bg-[#212020] duration-300 cursor-pointer'
-          onClick={() => setShowInput(true)}
-        >
-          + <span className=' hidden sm:block'>New budget</span>
-        </button>
+        <div className="flex gap-3">
+          <select
+            className="w-full sm:w-40 bg-[#262624] border-[1.5px] border-[#494945] h-10 px-3 cursor-pointer rounded-lg focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-[#b7b5a7]"
+          value={months}
+          onChange={(e) => setMonths(e.target.value)}
+          >
+            <option>This Month</option>
+            <option>Last Month</option>
+            <option>This year</option>
+          </select>
 
-        {showInput && (
-          <AddBudget onClose={() => setShowInput(false)} />
-        )}
+          <button
+            className='flex gap-1 border-[1.5px] pt-1.5 px-2 h-10 rounded-lg text-white border-[#65645f] hover:bg-[#212020] duration-300 cursor-pointer'
+            onClick={() => setShowInput(true)}
+          >
+            + <span className=' hidden sm:block'>New budget</span>
+          </button>
+
+          {showInput && (
+            <AddBudget onClose={() => setShowInput(false)} />
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 md:mx-45 gap-4 mt-6">
@@ -62,7 +116,7 @@ function Budgets() {
       </div>
 
       <div className="mt-8 px-2 sm:px-4 md:px-6">
-        <CategoryBudget />
+        <CategoryBudget expenses={filteredExpenses} />
       </div>
     </div>
   )
