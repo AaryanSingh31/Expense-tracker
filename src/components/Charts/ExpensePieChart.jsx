@@ -14,8 +14,12 @@ import '../../styles/charts.css'
 
 
 function ExpensePieChart({ expenses }) {
-  
-  const groupedExpenses = groupExpensesByCategory(expenses);
+
+  const expenseOnly = expenses.filter(
+    exp => exp.transType !== "income"
+  );
+
+  const groupedExpenses = groupExpensesByCategory(expenseOnly);
   const COLORS = [
     "#06B6D4",
     "#8B5CF6",

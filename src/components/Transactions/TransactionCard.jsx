@@ -44,8 +44,13 @@ function TransactionCard({ showAll, expenses }) {
                             {expense.payment}
                         </div>
 
-                        <div className='text-[#c72724] font-bold'>
-                            -₹{expense.amount}
+                        <div
+                            className={`font-bold ${expense.transType === "income"
+                                ? "text-green-500"
+                                : "text-red-500"
+                                }`}
+                        >
+                            {expense.transType === "income" ? "+" : "-"}₹{expense.amount}
                         </div>
 
                         <div className='text-gray-300 font-bold'>
@@ -87,8 +92,13 @@ function TransactionCard({ showAll, expenses }) {
 
                         <div className='flex justify-between py-1'>
                             <span className='text-gray-400'>Amount</span>
-                            <span className='text-[#c72724] font-bold'>
-                                -₹{expense.amount}
+                            <span
+                                className={`font-bold ${expense.transType === "income"
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                    }`}
+                            >
+                                {expense.transType === "income" ? "+" : "-"}₹{expense.amount}
                             </span>
                         </div>
 

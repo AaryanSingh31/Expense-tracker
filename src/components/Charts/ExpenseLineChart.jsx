@@ -8,7 +8,11 @@ import groupExpensesByDate from "../../utils/groupExpenseByDate";
 
 function ExpenseLineChart({ expenses }) {
 
-  const chartData = groupExpensesByDate(expenses);
+  const expenseOnly = expenses.filter(
+    exp => exp.transType !== "income"
+  );
+
+  const chartData = groupExpensesByDate(expenseOnly);
   console.log(chartData)
 
   return (

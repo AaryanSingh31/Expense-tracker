@@ -59,10 +59,12 @@ function Budgets() {
     return true;
   });
 
-  const totalSpent = filteredExpenses.reduce(
-    (sum, expense) => sum + Number(expense.amount),
-    0
-  );
+  const totalSpent = filteredExpenses
+    .filter(exp => exp.transType !== "income")
+    .reduce(
+      (sum, expense) => sum + Number(expense.amount),
+      0
+    );
 
   const remaining = budget - totalSpent;
 
@@ -77,8 +79,8 @@ function Budgets() {
         <div className="flex gap-3">
           <select
             className="w-full sm:w-40 bg-[#262624] border-[1.5px] border-[#494945] h-10 px-3 cursor-pointer rounded-lg focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-[#b7b5a7]"
-          value={months}
-          onChange={(e) => setMonths(e.target.value)}
+            value={months}
+            onChange={(e) => setMonths(e.target.value)}
           >
             <option>This Month</option>
             <option>Last Month</option>

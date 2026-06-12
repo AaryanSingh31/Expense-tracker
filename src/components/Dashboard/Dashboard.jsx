@@ -63,10 +63,12 @@ function Dashboard() {
 
   const totalEntries = filteredExpenses.length;
 
-  const totalSpent = filteredExpenses.reduce(
-    (sum, expense) => sum + Number(expense.amount),
-    0
-  );
+  const totalSpent = filteredExpenses
+    .filter(exp => exp.transType !== "income")
+    .reduce(
+      (sum, expense) => sum + Number(expense.amount),
+      0
+    );
 
   const remaining = budget - totalSpent;
 

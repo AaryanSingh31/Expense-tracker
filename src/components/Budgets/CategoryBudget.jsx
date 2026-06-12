@@ -16,7 +16,7 @@ function CategoryBudget({ expenses }) {
       {catBudgets.map((item) => {
 
         const spent = expenses
-          .filter(exp => exp.category === item.category)
+          .filter(exp => exp.category === item.category && exp.transType !== "income")
           .reduce((sum, exp) => sum + Number(exp.amount), 0);
 
         const progressWidth = Math.min(

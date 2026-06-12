@@ -9,7 +9,11 @@ import '../../styles/charts.css'
 
 function ExpenseBarChart({ expenses }) {
 
-    const chartData = groupExpensesByDate(expenses);
+    const expenseOnly = expenses.filter(
+        exp => exp.transType !== "income"
+    );
+
+    const chartData = groupExpensesByDate(expenseOnly);
 
     const today = new Date();
 
@@ -36,19 +40,19 @@ function ExpenseBarChart({ expenses }) {
                         radius={[8, 8, 0, 0]}
                         legendType="rect"
                     >
-                    {chartData.map((entry, index) => (
-                        <Cell
-                            key={index}
-                            fill={
-                                entry.date === todayFormatted
-                                    ? "#534AB7"
-                                    : "#AFA9EC"
-                            }
-                        />
-                    ))}
-                </Bar>
-            </BarChart>
-        </ResponsiveContainer>
+                        {chartData.map((entry, index) => (
+                            <Cell
+                                key={index}
+                                fill={
+                                    entry.date === todayFormatted
+                                        ? "#534AB7"
+                                        : "#AFA9EC"
+                                }
+                            />
+                        ))}
+                    </Bar>
+                </BarChart>
+            </ResponsiveContainer>
         </div >
     )
 }
