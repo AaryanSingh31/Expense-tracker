@@ -70,13 +70,13 @@ function Budgets() {
 
   return (
     <div className='w-full h-full rounded-r-2xl bg-[#30302e] pt-4 pb-17 md:py-4 px-10 overflow-scroll no-scrollbar'>
-      <div className="flex justify-around">
+      <div className="flex flex-col sm:flex-row justify-around">
         <div className="flex flex-col">
           <div className="text-white font-semibold text-3xl">Budgets</div>
           <div className="text-[#cbcac4]">{currentMonth} {currentYear} — set spending limits per category</div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 mt-3">
           <select
             className="w-full sm:w-40 bg-[#262624] border-[1.5px] border-[#494945] h-10 px-3 cursor-pointer rounded-lg focus:outline-none focus:border-blue-600 focus:shadow-[0_0_6px_#3b82f6] font-semibold text-[#b7b5a7]"
             value={months}
@@ -88,10 +88,10 @@ function Budgets() {
           </select>
 
           <button
-            className='flex gap-1 border-[1.5px] pt-1.5 px-2 h-10 rounded-lg text-white border-[#65645f] hover:bg-[#212020] duration-300 cursor-pointer'
+            className='flex w-full justify-center gap-1 border-[1.5px] pt-1.5 px-2 h-10 rounded-lg text-white border-[#65645f] hover:bg-[#212020] duration-300 cursor-pointer'
             onClick={() => setShowInput(true)}
           >
-            + <span className=' hidden sm:block'>New budget</span>
+            + <span className='block'>New budget</span>
           </button>
 
           {showInput && (
